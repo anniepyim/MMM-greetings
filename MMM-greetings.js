@@ -80,10 +80,10 @@ Module.register("MMM-greetings", {
 		// }
 		//
 		// Schedule update timer.
-		setInterval(function() {
-			self.message=""
-			self.updateDom(self.config.fadeSpeed);
-		}, this.config.updateInterval);
+		// setInterval(function() {
+		// 	self.message=""
+		// 	self.updateDom(self.config.fadeSpeed);
+		// }, this.config.updateInterval);
 	},
 
 	/* randomIndex(compliments)

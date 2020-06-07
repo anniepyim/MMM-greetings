@@ -19,7 +19,8 @@ module.exports = NodeHelper.create({
 			var query = url.parse(req.url, true).query;
 			var message = query.message;
 			var type = query.type;
-      var silent = query.silent || false;
+      		var silent = query.silent || false;
+      		var self = this;
 
 			if (message == null && type == null){
 				res.send({"status": "failed", "error": "No message and type given."});
@@ -34,6 +35,13 @@ module.exports = NodeHelper.create({
 				var log = {"type": type, "message": message, "silent": silent, "timestamp": new Date()};
 				res.send({"status": "success", "payload": log});
 				this.sendSocketNotification("NEW_MESSAGE", log);
+
+				setTimeout(function() {
+					//your code to be executed after 1 second
+					log = {"type": type, "message": "", "silent": silent, "timestamp": new Date()};
+					self.sendSocketNotification("NEW_MESSAGE", log);
+					}, 5000);
+
 				// this.storeLog(log);
 			}
 		});
